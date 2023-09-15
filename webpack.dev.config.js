@@ -40,13 +40,15 @@ module.exports = {
   ],
   devtool: 'cheap-source-map',
   devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    stats: {
-      colors: true,
-      chunks: false,
-      children: false
+    static: path.resolve(__dirname, 'dist'),
+    devMiddleware: {
+      stats: {
+        colors: true,
+        chunks: false,
+        children: false
+      }
     },
-    before() {
+    onBeforeSetupMiddleware() {
       spawn(
         'electron',
         ['.'],
